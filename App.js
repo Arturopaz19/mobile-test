@@ -1,7 +1,7 @@
 import { Asset } from 'expo-asset'
 import { AppLoading } from 'expo'
 import React, { useState } from 'react'
-import { StyleSheet, View, Image, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import AppNavigator from './navigation/AppNavigator'
 
 export default function App() {
