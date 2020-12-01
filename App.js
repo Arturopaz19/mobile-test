@@ -9,7 +9,7 @@ export default function App() {
 
   const cacheResourcesAsync = async () => {
     //example for charge images and save in cache
-    const images = [require('./assets/icon.png'), require('./assets/splash.png')]
+    const images = [require('./assets/icon.png'), require('./assets/splash.png'), require('./assets/bank-background.jpeg')]
 
     const cacheImages = images.map(image => {
       return Asset.fromModule(image).downloadAsync()
