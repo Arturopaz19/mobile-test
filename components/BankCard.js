@@ -24,12 +24,15 @@ const styles = StyleSheet.create({
       height: 58
    },
    card: {
-      borderRadius: 8
+      borderRadius: 8,
+      backgroundColor: '#000'
    },
    title: {
-      fontSize: 22
+      fontSize: 22,
+      color: '#fff'
    },
    text: {
-      fontSize: 12
+      fontSize: 12,
+      color: '#fff'
    }
 })
