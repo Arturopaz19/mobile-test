@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, ScrollView, View, SafeAreaView, ActivityIndicator, Dimensions, Modal, Image } from 'react-native'
+import { StyleSheet, Text, ScrollView, View, SafeAreaView, ActivityIndicator, Dimensions, Modal, Image, Alert } from 'react-native'
 import Constants from 'expo-constants'
 import { getBanks } from '../api/api'
 import BankCard from '../components/BankCard'
@@ -10,6 +10,9 @@ const windowWidth = Dimensions.get('window').width
 
 export default function Banks () {
    const [ banks, setBanks ] = useState([])
+   const [ isLoading, setIsLoading ] = useState(true)
+   const [ isError, setIsError ] = useState(false)
+   const [ error, setError ] = useState('')
    const [ bankSelected, setBankSelected ] = useState({})
    const [ modalBank, setModalBank ] = useState(false)
 
@@ -17,7 +20,17 @@ export default function Banks () {
       const fetchBanks = async () => {
          try {
             const response = await getBanks()
-            setBanks(response)
+            if (response.ok){
+               setBanks(response.obj)
+               setIsError(false)
+               setError('')
+               setIsLoading(false)
+            } else {
+               setBanks([])
+               setIsError(true)
+               setError(response.obj.message)
+               setIsLoading(false)
+            }
          } catch (error) {
             console.log(error.message)
          }
@@ -29,7 +42,6 @@ export default function Banks () {
    const handleSelected = (obj) => {
       setBankSelected(obj)
       setModalBank(true)
-      // console.log(obj)
    }
 
    const list = Object.keys(banks).map(key => {
@@ -47,10 +59,20 @@ export default function Banks () {
       <SafeAreaView style={styles.container}>
          <StatusBar backgroundColor={'#000000'} style='light' />
          <View style={styles.content}>
-            {Object.keys(list).length > 0 &&
+            {!isLoading &&
                <>
                   <ScrollView style={styles.scrollView}>
-                     {list}
+                     {!isError &&
+                        list
+                     }
+                     {isError &&
+                        Alert.alert('Alerta', `${error}`, [
+                           {
+                             text: 'OK',
+                             onPress: () => null
+                           }
+                        ])
+                     }
                   </ScrollView>
                   {modalBank && Object.keys(bankSelected).length > 0 &&
                      <Modal
@@ -80,7 +102,7 @@ export default function Banks () {
                   }
                </>
             }
-            {Object.keys(banks).length === 0 &&
+            {isLoading &&
                <ActivityIndicator size='large' color='#0000ff' />
             }
          </View>
