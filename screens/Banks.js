@@ -103,7 +103,7 @@ export default function Banks () {
                </>
             }
             {isLoading &&
-               <ActivityIndicator size='large' color='#0000ff' />
+               <ActivityIndicator size='large' color='#dddddd' />
             }
          </View>
       </SafeAreaView>
