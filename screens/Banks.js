@@ -45,7 +45,7 @@ export default function Banks () {
    })
    return (
       <SafeAreaView style={styles.container}>
-         <StatusBar style='auto' />
+         <StatusBar backgroundColor={'#000000'} style='light' />
          <View style={styles.content}>
             {Object.keys(list).length > 0 &&
                <>
@@ -93,10 +93,10 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: Constants.statusBarHeight
+      marginTop: Constants.statusBarHeight,
+      backgroundColor: '#333333',
    },
    scrollView: {
-      backgroundColor: '#000000',
       width: windowWidth,
       paddingBottom: 10
    },

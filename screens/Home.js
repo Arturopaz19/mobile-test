@@ -1,6 +1,7 @@
-import { StatusBar } from 'expo-status-bar'
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, BackHandler, Alert } from 'react-native'
+import { StyleSheet, Text, View, BackHandler, Alert, SafeAreaView } from 'react-native'
+import Constants from 'expo-constants'
+import { StatusBar } from 'expo-status-bar'
 
 export default function Home (props) {
 
@@ -30,18 +31,23 @@ export default function Home (props) {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <StatusBar style='auto' />
-      <Text>Bienvenidos a Bank App!</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor={'#000000'} style='light' />
+      <Text style={styles.text}>Bienvenidos a Bank App!</Text>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#333333',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
   },
+  text: {
+    fontSize: 16,
+    color: '#ffffff'
+ }
 });
