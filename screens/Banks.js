@@ -80,35 +80,9 @@ export default function Banks () {
                   }
                </>
             }
-            {Object.keys(list).length === 0 &&
+            {Object.keys(banks).length === 0 &&
                <ActivityIndicator size='large' color='#0000ff' />
             }
-            {/* {modalBank && Object.keys(bankSelected).length > 0 &&
-               <Modal
-                  animationType='slide'
-                  transparent={true}
-                  visible={modalBank}
-                  onRequestClose={() => {
-                     setModalBank(false)
-                     setBankSelected({})
-                  }}
-               >
-                  <View style={styles.centeredView}>
-                     <View style={styles.modalView}>
-                     <Image
-                        style={styles.logo}
-                        resizeMode='cover'
-                        source={{ uri: bankSelected.url }}
-                     />
-                     <View style={{ alignItems: 'center', marginVertical: 15 }}>
-                        <Text style={styles.title}>{bankSelected.title}</Text>
-                        <Text style={styles.text}>{bankSelected.description}</Text>
-                     </View>
-                     <Button title={'Cerrar'} onPress={() => { setModalBank(false)}}/>
-                     </View>
-                  </View>
-               </Modal>
-            } */}
          </View>
       </SafeAreaView>
    )
